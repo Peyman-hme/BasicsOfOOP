@@ -1,70 +1,19 @@
-# مفهوم کلاس
+# SOLID Principles
+SOLID is a mnemonic for five design principles intended to
+make software designs more understandable, flexible and
+maintainable.
 
-زبان‌های  برنامه نویسی شی‌گرا متشکل از کلاس ها و اشیا هستند. کلاس ها ساختار و ویژگی های اشیا را مشخص می کنند. در واقع اشیا از روی کلاس ها ساخته می شوند و کلاس ها را می توان یک blueprint برای اشیا دانست. کلاس ها شامل خصوصیاتی هستند، مانند  صفات، رفتار ها. هر کدام از این خصوصیات دارای سطح مشاهده پذیری مشخصی هستند مانند public, private در مورد این موارد در ادامه به تفسیر صحبت خواهیم کرد.
+## Single responsibility principle
+There should be only one reason to change the body of a class. Make a lot of classes that every one of them is responsible only for one functionality.
+Imagine that you've working on a project for many years. Now you want to review a class which is created 4 years ago and it has a lots of lines of code and functionality that it's too hard to scan through whole code and undrestand its functionality completely.
+There is also another problem. If your class does many things you have to change it everytime one of these things changes and there is a high probability to break other parts of the class that are not supposed to change.
 
-یک شیوه استاندارد برای نمایش کلاس ها، رفتار ها، ویژگی ها و روابطشان استفاده از نمودار UML (Unified Modeling Language) می باشد که در تصویر زیر قسمت های مختلف نمایش یک کلاس را مشاهده می کنید:
+Let's consider an example. We have a Employee class which has two method; one for getting employee's name and one for printing time sheet report. These are two funciontality so the Employee class should be change if 1.We need to modify Employee's fields. 2.The format of timesheet has been changed. So it contradicts this principle.
+![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/4f0629be-b6bc-4526-b0f5-7b2b97f17823)
 
-![](https://s8.uupload.ir/files/oop1_xoxq.png)
+Now we want to solve this problem by extracting out printing timesheet functionality from this class and implement it in a new class and make a association relationship between Employee class and this new class.
 
-# زیرکلاس و زبرکلاس
-
-در برنامه نویسی شی گرا ما سلسله مراتب کلاس ها را داریم بدین معنا که کلاس هایی وجود دارند که ویژگی ها و رفتار های کلاس های پدر خود را به ارث می برند. کلاس های پدر را زبرکلاس (superclass) و کلاس های فرزند را زیرکلاس (subclass) می نامیم.
-
-![](https://s8.uupload.ir/files/oop2_s09c.png)
-
-# پایه های برنامه نویسی شی گرا
-
-برنامه نویسی شی گرا بر چهار پایه اصلی بنا نهاده شده:
-
-
-## انتزاع (Abstraction)
-
-در اکثر اوقات، اشیا و کلاس هایی که در برنامه خود تعریف می کنیم، مدلی از دنیای واقعی است. اما این مدل 100% همانند شی در دنیای واقعی نیس و در واقع انتزاعی از آن است. بر اساس نوع کاربرد و نیازمندی های برنامه این انتزاع می تواند متفاوت باشد. برای مثال یک کلاس هواپیما را در نظر بگیرید که برای یک برنامه فروش بلیط تنها شامل صفت تعداد صندلی است ولی همین هواپیما  در برنامه تست پرواز شامل صفات بیشتری مانند سرعت، زاویه پرواز و .. خواهد بود.
-
-![](https://s8.uupload.ir/files/oop3_ilyi.png)
-
-## کپسوله کردن (Encapsulation)
-
-وقتی می خواهید ماشین خود را روشن کنید تنها کافیست سوئیچ را در محل مربوطه وارد کرده و بچرخانید و سپس ماشین روشن می شود دیگر لازم نیست دو تا سیم را به هم نزدیک کرده تا جرقه بزنند و ماشین روشن شود و یا نیازی به بالا و پایین کردن دستی سیلندر ها
-برای حرکت خودرو نیست. در واقع این جزئیات از دید ببرونی ماشین مخقی بوده و برای روشن کردن ماشین تنها یک رابط (واسط) مشخص در دسترس عمومی قرار داده شده است. کپسوله کردن ویژگی مخفی سازی حالات و رفتار های شی از سایر اشیا و بخش های برنامه و تنها راه دسترسی به درون شی، واسط های محدود تعریف شده برای آن شی می باشد
-
-## وراثت (Inheritance)
-
-در برنامه نویسی شی گرا وراثت، توانایی تعریف کلاس های فرزند برای کلاس های موجود و به ارث بردن صفات و رفتار های کلاس پدر توسط کلاس فرزندان می باشد. این ویژگی باعث می شود reusability (توانایی استفاده مجدد از کد های یکسان برای مقاصد متفاوت) بالا برود. 
-
-نکته1: در اکثر زبان های برنامه نویسی کلاس ها تنها می توانند از یک کلاس ارث بری کنند اما می توانند چندین واسط (interface) را پیاده سازی کنند.
-
-نکته2: اگر زبرکلاس، واسطی را پیاده سازی کرده باشد تمام زیرکلاس های آن نیز بایستی آن واسط ها را پیاده سازی کنند.
-
-![](https://s8.uupload.ir/files/oop4_g2zh.png)
-
-## چندریختی (Polymorphism)
-
-تصور کنید دو کلاس سگ و گربه را داریم که هر یک از کلاس حیوان ارث بری می کنند. در کلاس حیوان یک متد abstract «تولید صدا» وجود دارد که زیرکلاس های سگ و گربه آن را override کرده اند و هر یک صدای مخصوص به خود را پس از صدا زده شدن این متد تولید می کنند. برای نگهداری اشیای حیوان و صدا زدن متد تولید صدا نیازی به دانستن دقیق نوع شی و کلاس آن نیست. این قابلیت به علت وجود پیاده سازی چندریختی در برنامه نویسی شی گرا است.
-
-![](https://s8.uupload.ir/files/oop5_gzn.png)
+![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/e2031a99-c873-4c6e-bb5f-de7f721b7deb)
 
 
-# الگو طراحی (Design pattern)
-
-الگو های طراحی راه حل های عمومی و کلی برای حل مسائل معمول می باشند. الگو های طراحی از منظر هدف به چندین دسته بندی مختلف تقسیم می شوند:
-
-## الگو های ساختی (Creational patterns)
-
-مکانیزم هایی برای ایجاد اشیا که انعطاف و بازاستفاده از کد را بالا می برد.
-
-## الگو های ساختاری (Structural patterns)
-
-همزمان با منعطف و بهینه نگه داشتن ساختار، چگونگی جمع آوری اشیا و کلاس ها در ساختار های بزرگ تر را توضیح می دهد.
-
-## الگوهای رفتاری (behavioral patterns)
-
-دقت بر بهینه بودن ارتباطات و اختصاص مسئولیت های مناسب به اشیا دارد.
-
-# خصوصیات طراحی خوب
-## قابلیت بازاستفاده از کد
-اگر به گونه ای کد زده باشیم که امکان استفاده مجدد از کد های قبلی مان را داشته باشیم، در هزینه و زمان بسیاری در آینده صرفه جویی خواهد شد. 
-
-## توسعه پذیری
-برنامه ها به سرعت در حال تغییر و رشد اند. اگر برنامه ای نسبت به توسعه یافتن و این گونه تغییرات منعطف نباشد با مشکلات زیادی رو به رو خواهد شد. استفاده از الگوهای طراحی این کمک را به ما می کند که قابلیت توسعه پذیری بالا برود. 
 
