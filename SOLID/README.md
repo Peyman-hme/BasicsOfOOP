@@ -31,5 +31,14 @@ The solution of this problem is creating a new interface which is called Shippin
 
 Now if you want to add a new shipping type you can simply create a new class and implement Shipping interface without breaking existing code.
 
-
-
+## LIskov substitiution principle
+When extending a class, remember that you should be able to pass objects of the subclass in place of objects of
+the parent class without breaking the client code.
+This principle has a set of formal requirement for subclasses:
++ Parameter types in a method of a subclass should match or be more abstract than parameter types in the method of the superclass.
++ The return type in a method of a subclass should match or be a subtype of the return type in the method of the superclass.
++ A method in a subclass shouldn’t throw types of exceptions which the base method isn’t expected to throw.
++ A subclass shouldn’t strengthen pre-conditions
++ A subclass shouldn’t weaken post-conditions
++ Invariants of a superclass must be preserved
++ A subclass shouldn’t change values of private fields of the superclass.
