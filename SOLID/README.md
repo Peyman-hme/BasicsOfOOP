@@ -2,6 +2,10 @@
 SOLID is a mnemonic for five design principles intended to
 make software designs more understandable, flexible and
 maintainable.
++ [Single responsibility](#single-responsibility-principle)
++ [Open Close principle](#open-close-principle)
++ [Liskov substitiution principle](#liskov-substitiution-principle)
++ [Interface segregation principle](#interface-segregation-principle)
 
 ## Single responsibility principle
 There should be only one reason to change the body of a class.
@@ -16,7 +20,7 @@ There should be only one reason to change the body of a class.
 ![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/e2031a99-c873-4c6e-bb5f-de7f721b7deb)
 
 
-## Open/Close principle
+## Open Close principle
 Classes should be open for extension but closed for
 modification.
 This principle is about adding new feature without breaking the existing code. A class is open whrn you can extend it. Create new subclasses and mew features, methods, etc. Howeever some classes are final. This means that this class is unable to be extended. We call these classes as complete.
@@ -31,7 +35,7 @@ The solution of this problem is creating a new interface which is called Shippin
 
 Now if you want to add a new shipping type you can simply create a new class and implement Shipping interface without breaking existing code.
 
-## LIskov substitiution principle
+## Liskov substitiution principle
 When extending a class, remember that you should be able to pass objects of the subclass in place of objects of
 the parent class without breaking the client code.
 This principle has a set of formal requirement for subclasses:
@@ -50,5 +54,16 @@ Look at this example below. We have a Document class which has save() method. Be
 For solving this problem we have to displace save() method from superclass into WritableDocument class:
 
 ![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/464f613b-bd6c-418e-b5b4-761c1ac9bedc)
+
+## Interface segregation principle
+Clients shouldn’t be forced to depend on methods they do not use.
+Try to make your interfaces narrow enough that client classes don’t have to implement behaviors they don’t need. According to this principle, you have to break down 'fat' interface into specific ones. This approach prevent classes to implement methods that are not related to them. Class inheritance lets a class have just one superclass, but it doesn’t limit the number of interfaces that the class can implement at the same time. Hence, there’s no need to cram tons of unrelated methods to a single interface. Break it down into several more refined interfaces.
+Consider this example. You want to write a program which manage different types of could provider
+like amazon, dropbox, etc. You write a 'fat' interface then create two classes then implement the interface. but one of these classes doesn't have all of the features and it has to implement them.
+![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/c63b528f-53d2-43ed-ad63-7d0c7a800981)
+For solve this problem we break down the fat interface into some new interfaces:
+
+![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/98e43fc6-ea73-448b-a3d8-f1f58f9fb874)
+
 
 
