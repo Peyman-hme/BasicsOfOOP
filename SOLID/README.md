@@ -6,6 +6,7 @@ maintainable.
 + [Open Close principle](#open-close-principle)
 + [Liskov substitiution principle](#liskov-substitiution-principle)
 + [Interface segregation principle](#interface-segregation-principle)
++ [Dependency inversion](#dependency-inversion-principle)
 
 ## Single responsibility principle
 There should be only one reason to change the body of a class.
@@ -64,6 +65,18 @@ like amazon, dropbox, etc. You write a 'fat' interface then create two classes t
 For solve this problem we break down the fat interface into some new interfaces:
 
 ![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/98e43fc6-ea73-448b-a3d8-f1f58f9fb874)
+
+## Dependency inversion principle
+High-level classes shouldn’t depend on low-level classes. Both should depend on abstractions. Abstractions shouldn’t depend on details. Details should depend on abstractions.
+Usually when designing software, you can make a distinction between two levels of classes.
++ Low-level classes implement basic operations such as working with a disk, transferring data over a network, connecting to a database, etc.
++ High-level classes contain complex business logic that directs low-level classes to do something.
+
+Let's have a look at this example. Imagine we have a high-level ReportBuget class which uses a low-level database for reading and writing data. Now assume we want to change the versin of the database into the newest release so we have to change the body of ReportBuget class to be compatile with the new version.
+![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/9883118a-1689-460e-8cb1-3a667cf98821)
+
+For solve this issue we can define a high-level interface and making the ReportBuget class to use this interface instead. now we can create many low-level database classes which implement it.
+![image](https://github.com/Peyman-hme/BasicsOfOOP/assets/62210041/4a818240-e9e9-40f5-83c0-1307835b3afa)
 
 
 
